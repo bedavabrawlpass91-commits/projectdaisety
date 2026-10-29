@@ -1,0 +1,2 @@
+[functions.analyze-song]
+verify_jwt = true

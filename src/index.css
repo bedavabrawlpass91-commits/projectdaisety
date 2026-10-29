@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #1a0810;
+    --text-secondary: #6b5560;
+  }
+
+  [data-theme="bordo"] {
+    --accent-100: #d9b0ad;
+    --accent-200: #bd8581;
+    --accent-300: #a86562;
+    --accent-400: #8f504e;
+    --accent-500: #733c3c;
+    --accent-600: #5b3032;
+    --accent-700: #422529;
+    --bg-start: #f1ebe4;
+    --bg-end: #e4d9d0;
+    --body-bg: #c9beb3;
+    --ink: #241b1b;
+    --text-secondary: #75645e;
+    --card-border: rgba(184,40,74,0.15);
+    --inset-border: rgba(184,40,74,0.2);
+    --gel-highlight: rgba(244,168,192,0.6);
+    --gel-shadow: rgba(42,4,16,0.4);
+    --gel-shadow-light: rgba(42,4,16,0.15);
+  }
+
+  [data-theme="ocean"] {
+    --accent-100: #b7c4c3;
+    --accent-200: #8da5a6;
+    --accent-300: #6f898b;
+    --accent-400: #587477;
+    --accent-500: #496368;
+    --accent-600: #3a5057;
+    --accent-700: #2f4148;
+    --bg-start: #eef0eb;
+    --bg-end: #dce0da;
+    --body-bg: #bcc3bc;
+    --ink: #1d292a;
+    --text-secondary: #627071;
+    --card-border: rgba(24,136,196,0.15);
+    --inset-border: rgba(24,136,196,0.2);
+    --gel-highlight: rgba(160,216,240,0.6);
+    --gel-shadow: rgba(0,34,66,0.4);
+    --gel-shadow-light: rgba(0,34,66,0.15);
+  }
+
+  [data-theme="lime"] {
+    --accent-100: #c4c7a9;
+    --accent-200: #a8aa84;
+    --accent-300: #8f9266;
+    --accent-400: #777b54;
+    --accent-500: #656948;
+    --accent-600: #50543a;
+    --accent-700: #3d412f;
+    --bg-start: #efeee3;
+    --bg-end: #dfdfcf;
+    --body-bg: #c2c3af;
+    --ink: #25271d;
+    --text-secondary: #6d7059;
+    --card-border: rgba(90,184,24,0.15);
+    --inset-border: rgba(90,184,24,0.2);
+    --gel-highlight: rgba(200,240,160,0.6);
+    --gel-shadow: rgba(10,40,4,0.4);
+    --gel-shadow-light: rgba(10,40,4,0.15);
+  }
+}
+
+body {
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #c9beb3;
+  background-image: radial-gradient(rgba(54,35,28,0.07) 0.7px, transparent 0.7px);
+  background-size: 5px 5px;
+}
+
+.font-serif {
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+.accent-text {
+  color: var(--accent-500);
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.marquee-track {
+  animation: marquee 14s linear infinite;
+  white-space: nowrap;
+}
+
+/* Glossy gel button — accent (theme-aware) */
+.btn-gel-accent {
+  background: linear-gradient(180deg, var(--accent-300) 0%, var(--accent-400) 40%, var(--accent-600) 50%, var(--accent-500) 60%, var(--accent-300) 100%);
+  box-shadow:
+    inset 0 1px 0 var(--gel-highlight),
+    inset 0 -2px 4px var(--gel-shadow),
+    0 2px 6px var(--gel-shadow);
+  transition: all 0.12s ease;
+}
+.btn-gel-accent:hover { filter: brightness(1.08); }
+.btn-gel-accent:active {
+  background: linear-gradient(180deg, var(--accent-600) 0%, var(--accent-500) 50%, var(--accent-400) 100%);
+  box-shadow: inset 0 2px 6px var(--gel-shadow);
+  transform: translateY(1px);
+}
+.btn-gel-accent:disabled {
+  background: linear-gradient(180deg, #9a8a90 0%, #7a6a70 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Glossy gel button — silver */
+.btn-gel-silver {
+  background: linear-gradient(180deg, #e8e8ec 0%, #c0c0c8 40%, #9a9aa2 50%, #b8b8c0 60%, #d8d8e0 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    inset 0 -2px 4px rgba(0,0,0,0.15),
+    0 2px 5px rgba(0,0,0,0.25);
+  transition: all 0.12s ease;
+}
+.btn-gel-silver:hover { filter: brightness(1.05); }
+.btn-gel-silver:active {
+  background: linear-gradient(180deg, #9a9aa2 0%, #b8b8c0 100%);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+  transform: translateY(1px);
+}
+
+/* Glossy card surface */
+.gel-card {
+  background: linear-gradient(180deg, rgba(250,247,241,0.96) 0%, rgba(239,232,224,0.92) 100%);
+  box-shadow: 0 2px 8px var(--gel-shadow-light), inset 0 1px 0 rgba(255,255,255,0.6);
+  border: 1px solid var(--card-border);
+}
+
+/* Glossy inset surface */
+.gel-inset {
+  background: linear-gradient(180deg, #eee9e2 0%, #ddd5cc 100%);
+  box-shadow: inset 0 2px 4px var(--gel-shadow-light), inset 0 1px 0 rgba(0,0,0,0.05);
+  border: 1px solid var(--inset-border);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fade-in 0.35s ease-out both; }
+
+@keyframes fade-in-stagger {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-stagger { animation: fade-in-stagger 0.3s ease-out both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* === Y2K / Gen Z animated card visuals === */
+
+/* Mesh gradient flow — each variant has different hue + speed */
+@keyframes mesh-flow {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  33%  { transform: translate(8%, -6%) scale(1.15); }
+  66%  { transform: translate(-6%, 8%) scale(0.95); }
+  100% { transform: translate(0%, 0%) scale(1); }
+}
+
+@keyframes mesh-flow-2 {
+  0%   { transform: translate(0%, 0%) scale(1.1); }
+  50%  { transform: translate(-10%, 10%) scale(0.9); }
+  100% { transform: translate(0%, 0%) scale(1.1); }
+}
+
+@keyframes mesh-flow-3 {
+  0%   { transform: translate(-5%, 5%) scale(1.05); }
+  50%  { transform: translate(10%, -8%) scale(1.2); }
+  100% { transform: translate(-5%, 5%) scale(1.05); }
+}
+
+/* Holographic shimmer sweep */
+@keyframes holo-sweep {
+  0%   { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(220%) skewX(-15deg); }
+}
+
+/* Slow rotation for conic gradient layer */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Film grain — subtle noise shift */
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-5%, -5%); }
+  20%  { transform: translate(-10%, 5%); }
+  30%  { transform: translate(5%, -10%); }
+  40%  { transform: translate(-5%, 15%); }
+  50%  { transform: translate(-10%, 5%); }
+  60%  { transform: translate(15%, 0%); }
+  70%  { transform: translate(0%, 10%); }
+  80%  { transform: translate(-15%, 0%); }
+  90%  { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0%); }
+}
+
+.y2k-visual {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* CRT scanlines overlay */
+.y2k-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.12) 3px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Chromatic glow border */
+.y2k-glow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.15), inset 0 0 4px rgba(255,0,255,0.2);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Mesh blob layers */
+.y2k-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.y2k-blob-1 { animation: mesh-flow 8s ease-in-out infinite; }
+.y2k-blob-2 { animation: mesh-flow-2 11s ease-in-out infinite; }
+.y2k-blob-3 { animation: mesh-flow-3 9s ease-in-out infinite; }
+
+/* Holographic sweep overlay */
+.y2k-holo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.08) 30%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.08) 70%,
+    transparent 100%
+  );
+  animation: holo-sweep 6s ease-in-out infinite;
+  animation-delay: 2s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Conic shimmer layer */
+.y2k-conic {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255,255,255,0.12) 60deg,
+    transparent 120deg,
+    rgba(255,255,255,0.08) 180deg,
+    transparent 240deg,
+    rgba(255,255,255,0.1) 300deg,
+    transparent 360deg
+  );
+  animation: slow-spin 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Film grain texture overlay */
+.y2k-grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  animation: grain-shift 3s steps(8) infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot, .fade-in, .fade-in-stagger, .marquee-track,
+  .y2k-blob-1, .y2k-blob-2, .y2k-blob-3, .y2k-holo, .y2k-conic, .y2k-grain {
+    animation: none;
+  }
+}
